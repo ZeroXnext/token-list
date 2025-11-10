@@ -9,7 +9,8 @@ node_modules/
 .yarn/build-state.yml
 .yarn/install-state.gz
 
-packages/**/**/dist
+dist
+
 # Keep Yarn binary + metadata
 !.yarn/releases
 !.yarn/plugins
@@ -20,3 +21,8 @@ packages/**/**/dist
 *.log
 .DS_Store
 .env
+
+# Turbo
+.turbo
+
+*.tsbuildinfo

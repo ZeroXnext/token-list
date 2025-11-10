@@ -5,17 +5,17 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@token-list-builder/cli@workspace:packages/cli":
+"@tokenlist-builder/cli@workspace:packages/cli":
   version: 0.0.0-use.local
-  resolution: "@token-list-builder/cli@workspace:packages/cli"
+  resolution: "@tokenlist-builder/cli@workspace:packages/cli"
   dependencies:
     yargs: "npm:^18.0.0"
   languageName: unknown
   linkType: soft
 
-"@token-list-builder/core@workspace:packages/core":
+"@tokenlist-builder/core@workspace:packages/core":
   version: 0.0.0-use.local
-  resolution: "@token-list-builder/core@workspace:packages/core"
+  resolution: "@tokenlist-builder/core@workspace:packages/core"
   languageName: unknown
   linkType: soft
 
@@ -92,11 +92,84 @@ __metadata:
   languageName: node
   linkType: hard
 
-"token-list-builder@workspace:.":
+"tokenlist-builder@workspace:.":
   version: 0.0.0-use.local
-  resolution: "token-list-builder@workspace:."
+  resolution: "tokenlist-builder@workspace:."
+  dependencies:
+    turbo: "npm:^2.6.0"
   languageName: unknown
   linkType: soft
+
+"turbo-darwin-64@npm:2.6.0":
+  version: 2.6.0
+  resolution: "turbo-darwin-64@npm:2.6.0"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"turbo-darwin-arm64@npm:2.6.0":
+  version: 2.6.0
+  resolution: "turbo-darwin-arm64@npm:2.6.0"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"turbo-linux-64@npm:2.6.0":
+  version: 2.6.0
+  resolution: "turbo-linux-64@npm:2.6.0"
+  conditions: os=linux & cpu=x64
+  languageName: node
+  linkType: hard
+
+"turbo-linux-arm64@npm:2.6.0":
+  version: 2.6.0
+  resolution: "turbo-linux-arm64@npm:2.6.0"
+  conditions: os=linux & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"turbo-windows-64@npm:2.6.0":
+  version: 2.6.0
+  resolution: "turbo-windows-64@npm:2.6.0"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"turbo-windows-arm64@npm:2.6.0":
+  version: 2.6.0
+  resolution: "turbo-windows-arm64@npm:2.6.0"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"turbo@npm:^2.6.0":
+  version: 2.6.0
+  resolution: "turbo@npm:2.6.0"
+  dependencies:
+    turbo-darwin-64: "npm:2.6.0"
+    turbo-darwin-arm64: "npm:2.6.0"
+    turbo-linux-64: "npm:2.6.0"
+    turbo-linux-arm64: "npm:2.6.0"
+    turbo-windows-64: "npm:2.6.0"
+    turbo-windows-arm64: "npm:2.6.0"
+  dependenciesMeta:
+    turbo-darwin-64:
+      optional: true
+    turbo-darwin-arm64:
+      optional: true
+    turbo-linux-64:
+      optional: true
+    turbo-linux-arm64:
+      optional: true
+    turbo-windows-64:
+      optional: true
+    turbo-windows-arm64:
+      optional: true
+  bin:
+    turbo: bin/turbo
+  checksum: 10c0/736a11be685a5b2841102966574ee44ba068ddcea3201169b922f35e1c216b5550d658a7c755f19f594019e1128910c755b4c884bd59bf421285c17f1b3e1eef
+  languageName: node
+  linkType: hard
 
 "wrap-ansi@npm:^9.0.0":
   version: 9.0.2
