@@ -1,3 +1,21 @@
+# Idea
 .idea
-build
-node_modules
+
+# Node / Yarn
+node_modules/
+.pnp.*
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Keep Yarn binary + metadata
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+# Logs & temp
+*.log
+.DS_Store
+.env
