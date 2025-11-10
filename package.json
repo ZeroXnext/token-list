@@ -5,9 +5,9 @@
     "packages/*"
   ],
   "scripts": {
-    "core:add": "yarn workspace @tokenlist-builder/cli add",
+    "core:add": "yarn workspace @tokenlist-builder/core add",
     "cli:add": "yarn workspace @tokenlist-builder/cli add",
-    "core:rm": "yarn workspace @tokenlist-builder/cli remove",
+    "core:rm": "yarn workspace @tokenlist-builder/core remove",
     "cli:rm": "yarn workspace @tokenlist-builder/cli remove",
     "build": "turbo build"
   },

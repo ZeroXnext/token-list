@@ -2,6 +2,7 @@
   "name": "@tokenlist-builder/cli",
   "private": true,
   "dependencies": {
+    "ajv": "^8.17.1",
     "yargs": "^18.0.0"
   }
 }
