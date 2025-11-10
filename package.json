@@ -1,13 +1,13 @@
 {
-  "name": "token-list-builder",
+  "name": "tokenlist-builder",
   "packageManager": "yarn@4.11.0",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "core:add": "yarn workspace @token-list-builder/cli add",
-    "cli:add": "yarn workspace @token-list-builder/cli add",
-    "core:rm": "yarn workspace @token-list-builder/cli remove",
-    "cli:rm": "yarn workspace @token-list-builder/cli remove"
+    "core:add": "yarn workspace @tokenlist-builder/cli add",
+    "cli:add": "yarn workspace @tokenlist-builder/cli add",
+    "core:rm": "yarn workspace @tokenlist-builder/cli remove",
+    "cli:rm": "yarn workspace @tokenlist-builder/cli remove"
   }
 }
