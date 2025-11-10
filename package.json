@@ -3,5 +3,11 @@
   "packageManager": "yarn@4.11.0",
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "core:add": "yarn workspace @token-list-builder/cli add",
+    "cli:add": "yarn workspace @token-list-builder/cli add",
+    "core:rm": "yarn workspace @token-list-builder/cli remove",
+    "cli:rm": "yarn workspace @token-list-builder/cli remove"
+  }
 }
