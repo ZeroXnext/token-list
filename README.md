@@ -14,11 +14,11 @@ A modular toolchain for generating, validating, and maintaining Uniswap-compatib
 
 1. Clone the repository:
    ```
-   git clone <repository-url>
+   git clone https://github.com/ZeroXnext/tokenlist-builder.git
    ```
 2. Navigate into the project directory:
    ```
-   cd <project-directory>
+   cd tokenlist-builder
    ```
 3. Enable Corepack:
    ```
