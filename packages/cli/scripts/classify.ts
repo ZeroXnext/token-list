@@ -17,10 +17,10 @@ function main(tokenLists: TokenList[], supportedChains: string[], supportedNetwo
 
       // Skip if token was already added
       if (seen.has(uniqueKey)) {
-        if(verbose) {
+        if (verbose) {
           console.info(`Skipping ${token.address} from ${name}`);
         }
-        continue
+        continue;
       }
       seen.add(uniqueKey);
 
