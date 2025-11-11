@@ -1,7 +1,5 @@
-export interface Chain {
-  name: string;
-  type: "testnet" | "mainnet"
-}
+import {Chain} from './types';
+
 export const CHAINS_MAPPING: Record<number, Chain> = {
   1: {name: "ethereum", type: "mainnet"},
   3: {name: "ropsten", type: "testnet"},
