@@ -4,6 +4,7 @@ import {hideBin} from 'yargs/helpers';
 import findSources from './scripts/find-sources';
 import classify from './scripts/classify';
 import {DEFAULT_NETWORK_TYPES, DEFAULT_SUPPORTED_CHAINS, LIST_SOURCES} from './constants';
+import output from './scripts/output';
 
 const allSources = Object.keys(LIST_SOURCES);
 yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv: Argv) => {
@@ -28,9 +29,16 @@ yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv: A
         default: DEFAULT_NETWORK_TYPES,
         choices: DEFAULT_NETWORK_TYPES,
         description: "Allowed network type"
+      })
+      .option("output", {
+        type: "string",
+        alias: "o",
+        default: "dist",
       });
 }, async (args) => {
   const {chains, allowedNetworkTypes, sources, verbose} = args;
   const lists = await findSources(sources);
   const classified = classify(lists, chains, allowedNetworkTypes, verbose);
+
+  output(args.output, classified);
 }).help('help').strictCommands().parse();
