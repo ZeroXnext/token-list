@@ -10,6 +10,7 @@ yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv: A
   return argv.option("verbose", {type: "boolean", alias: "v", default: false}).option("sources", {
     type: "array",
     description: "The default sources to generate from.",
+    alias: "s",
     default: allSources,
     choices: allSources
   }).option("chains", {
