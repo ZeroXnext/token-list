@@ -15,7 +15,7 @@ export default {
       file: 'dist/core.esm.js',
       format: 'esm',   // ESM for modern bundlers & browsers
       sourcemap: true
-    }
+    },
   ],
   plugins: [
     nodeResolve({browser: true}), // resolve modules for browser
