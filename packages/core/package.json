@@ -3,6 +3,11 @@
   "private": true,
   "main": "dist/index.js",
   "type": "module",
+  "exports": {
+    "import": "./dist/core.esm.js",
+    "require": "./dist/core.cjs.js",
+    "types": "./dist/index.d.ts"
+  },
   "scripts": {
     "build": "rollup -c && tsc --declaration --emitDeclarationOnly --outDir dist"
   },
