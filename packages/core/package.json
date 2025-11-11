@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "build": "rollup -c "
+    "build": "rollup -c && tsc --declaration --emitDeclarationOnly --outDir dist"
   },
   "dependencies": {
     "ajv": "^8.17.1"
