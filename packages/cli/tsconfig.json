@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "ES2022",
+    "target": "ES2023",
+    "declarationDir": "dist",
+    "composite": true,
+    "moduleResolution": "node",
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "scripts/*",
+    "index.ts",
+    "constants.ts"
+  ]
+}
