@@ -1,10 +1,10 @@
 import {TokenList} from "@tokenlist-builder/core";
-import {MappedChainsType} from '../types';
+import {MappedTokenLists} from '../types';
 import {CHAINS_MAPPING} from '../constants';
 import {createDefaultList} from '../utils';
 
-function main(tokenLists: TokenList[], supportedChains: string[], supportedNetworks: string[], verbose: boolean): MappedChainsType {
-  const listMapping: MappedChainsType = new Map();
+function main(tokenLists: TokenList[], supportedChains: string[], supportedNetworks: string[], verbose: boolean): MappedTokenLists {
+  const listMapping: MappedTokenLists = new Map();
   const seen = new Set<string>();
 
   for (const tokenList of tokenLists) {

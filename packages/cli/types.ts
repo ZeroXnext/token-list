@@ -5,4 +5,4 @@ export interface Chain {
   type: string;
 }
 
-export type MappedChainsType = Map<string, Map<string, TokenList>>;
+export type MappedTokenLists = Map<string, Map<string, TokenList>>;
