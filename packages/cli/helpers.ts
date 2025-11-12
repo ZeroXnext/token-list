@@ -7,7 +7,6 @@ import * as fs from 'node:fs';
 
 export function partitionTokenList(tokenList: Omit<TokenList, "version" | "timestamp">,
                                    version: TokenList['version'] = DEFAULT_LIST_VERSION,
-                                   timestamp = new Date().toLocaleTimeString(),
                                    defaultTokenListName = DEFAULT_TOKEN_LIST_NAME): MutableTokenList[] {
   // Copy metadata from the list and the partitioned tokens
   const tokens = partitionArray(tokenList.tokens, tokenListSchema.properties.tokens.maxItems);
@@ -21,7 +20,7 @@ export function partitionTokenList(tokenList: Omit<TokenList, "version" | "times
       ...tokenList,
       name: name.length > tokenListSchema.properties.name.maxLength ? `${defaultTokenListName} ${i}` : name,
       tokens: _tokens
-    }, version, timestamp));
+    }, version));
   }
 
   return tokenLists;
@@ -39,14 +38,14 @@ export function initializeTokenList({
   tags: {},
   keywords: [],
   tokens: [],
-}, version: TokenList['version'] = DEFAULT_LIST_VERSION, timestamp = new Date().toLocaleTimeString()): TokenList {
+}, version: TokenList['version'] = DEFAULT_LIST_VERSION): TokenList {
   return {
     name,
     logoURI,
     tags,
     version,
     keywords,
-    timestamp,
+    timestamp: new Date().toISOString(),
     tokens,
   };
 }

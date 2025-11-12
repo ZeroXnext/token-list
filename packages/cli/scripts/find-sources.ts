@@ -15,7 +15,7 @@ async function main(sources: string[], defaultTokenListName = DEFAULT_TOKEN_LIST
     const res = await fetch(src);
     let data = await res.json();
 
-    const maybePartitionedLists = (data as TokenList).tokens.length > tokenListSchema.properties.tokens.maxItems ? partitionTokenList(data, defaultVersion, undefined, defaultTokenListName) : [data as MutableTokenList];
+    const maybePartitionedLists = (data as TokenList).tokens.length > tokenListSchema.properties.tokens.maxItems ? partitionTokenList(data, defaultVersion, defaultTokenListName) : [data as MutableTokenList];
 
     for (let list of maybePartitionedLists) {
 
