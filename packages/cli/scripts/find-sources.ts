@@ -18,17 +18,13 @@ async function main(sources: string[], defaultTokenListName = DEFAULT_TOKEN_LIST
     const maybePartitionedLists = (data as TokenList).tokens.length > tokenListSchema.properties.tokens.maxItems ? partitionTokenList(data, defaultVersion, defaultTokenListName) : [data as MutableTokenList];
 
     for (let list of maybePartitionedLists) {
-
-      let result = validator.validate(tokenListSchema, list);
-      const schemaPaths = validator.errors?.map(item => item.schemaPath) ?? [];
-
-      if (schemaPaths.includes("#/properties/name/maxLength")) {
-
+      if(list.name.length > tokenListSchema.properties.name.maxLength) {
         list.name = defaultTokenListName;
-        result = validator.validate(tokenListSchema, data);
       }
+      let result = validator.validate(tokenListSchema, list);
+
       if (!result) {
-        throw new Error(validator.errors?.join(", "));
+        throw new Error(validator.errors?.map(item => `${item.instancePath} ${item.message}`)?.join(", \n"));
       }
 
     }
