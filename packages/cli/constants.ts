@@ -40,3 +40,4 @@ export const DEFAULT_LIST_VERSION = {
 
 
 export const DEFAULT_TOKEN_LIST_NAME = "Token list"
+export const DEFAULT_LIST_LOGO_URI = ""
