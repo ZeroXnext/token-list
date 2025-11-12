@@ -2,8 +2,8 @@ import {TokenList, tokenListSchema} from "@tokenlist-builder/core";
 import {DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME, LIST_SOURCES} from '../constants';
 import addFormats from 'ajv-formats';
 import Ajv from 'ajv';
-import {partitionTokenList} from '../utils';
 import {MutableTokenList} from '../types';
+import {partitionTokenList} from '../helpers';
 
 const ajv = new Ajv();
 const validator = ajv.addSchema(tokenListSchema);
