@@ -61,3 +61,12 @@ export function getUniqueFilePath(dirPath: string, baseName: string, ext = 'json
 
   return filePath;
 }
+
+export function normalizeTokens(tokens: TokenList['tokens']): TokenList['tokens'] {
+  return (tokens??[]).filter((token) => (
+      token.logoURI !== null &&
+      token.name.length < tokenListSchema.definitions.TokenInfo.properties.name.maxLength &&
+      token.symbol.length < tokenListSchema.definitions.TokenInfo.properties.symbol.maxLength &&
+      new RegExp(tokenListSchema.definitions.TokenInfo.properties.symbol.anyOf[1].pattern).test(token.symbol)
+  ));
+}
