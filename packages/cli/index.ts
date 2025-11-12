@@ -67,6 +67,7 @@ yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv) =
     patch: parseInt(patch.toString()),
     minor: parseInt(minor.toString())
   });
+
   const classified = classify(lists.flat(), chains, allowedNetworkTypes, verbose);
-  output(outputDir, classified);
+  output(outputDir, classified, true);
 }).help('help').strictCommands().parse();

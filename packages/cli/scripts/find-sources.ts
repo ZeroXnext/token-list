@@ -14,14 +14,13 @@ async function main(sources: string[], defaultTokenListName = DEFAULT_TOKEN_LIST
   return Promise.all(sources.map<Promise<TokenList[]>>(async (src) => {
     const res = await fetch(src);
     let data = await res.json();
-
+    data.tokens = normalizeTokens(data.tokens);
     const maybePartitionedLists = (data as TokenList).tokens.length > tokenListSchema.properties.tokens.maxItems ? partitionTokenList(data, defaultVersion, defaultTokenListName) : [data as MutableTokenList];
 
     for (let list of maybePartitionedLists) {
       if (list.name.length > tokenListSchema.properties.name.maxLength) {
         list.name = defaultTokenListName;
       }
-      list.tokens = normalizeTokens(list.tokens);
       let result = validator.validate(tokenListSchema, list);
       if (!result) {
         throw new Error(validator.errors?.map(item => `${item.instancePath} ${item.message}`)?.join(", \n"));

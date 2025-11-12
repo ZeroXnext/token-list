@@ -5,7 +5,8 @@ export interface Chain {
   type: string;
 }
 
-export type MappedTokenLists = Map<string, Map<string, TokenList>>;
+// [network_type]/[chain_name]/[file_key]/[actual_list]
+export type MappedTokenLists = Map<string, Map<string, Map<string, TokenList>>>;
 
 export type Mutable<T> = {
   -readonly [P in keyof T]: T[P];
