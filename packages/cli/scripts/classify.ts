@@ -4,11 +4,20 @@ import {CHAINS_MAPPING} from '../constants';
 import {initializeTokenList} from '../helpers';
 import {slugify} from '../utils';
 
-function main(tokenLists: TokenList[], supportedChains: string[], supportedNetworks: string[], verbose: boolean): MappedTokenLists {
+function main(tokenLists: TokenList[], supportedChains: string[], supportedNetworks: string[], initialMap: MappedTokenLists = new Map(), verbose: boolean): MappedTokenLists {
   const mappedTokenList: MappedTokenLists = new Map();
-  const seen = new Set<string>();
-  // [network_type]/[chain_name]/[file_key]/[actual_list]
+  let seen = new Set<string>();
 
+  for (let [, chainTypes] of initialMap.entries()) {
+    for (let [, chains] of chainTypes.entries()) {
+      for (let [, tokenList] of chains) {
+        for (let token of tokenList.tokens) {
+          seen.add(`${token.chainId}:${token.address.toLowerCase()}`);
+        }
+      }
+    }
+  }
+  // [network_type]/[chain_name]/[file_key]/[actual_list]
   for (const tokenList of tokenLists) {
     for (const token of tokenList.tokens) {
       const chainInfo = CHAINS_MAPPING[token.chainId];

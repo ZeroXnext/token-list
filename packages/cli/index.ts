@@ -11,6 +11,7 @@ import {
   LIST_SOURCES
 } from './constants';
 import output from './scripts/output';
+import parse from './scripts/parse';
 
 yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv) => {
   return argv.option("verbose", {type: "boolean", alias: "v", default: false})
@@ -67,6 +68,7 @@ yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv) =
     patch: parseInt(patch.toString()),
     minor: parseInt(minor.toString())
   });
-  const classified = classify(lists.flat(), chains, allowedNetworkTypes, verbose);
+  const initialMap = parse(outputDir);
+  const classified = classify(lists.flat(), chains, allowedNetworkTypes, initialMap, verbose);
   output(outputDir, classified, true);
 }).help('help').strictCommands().parse();
