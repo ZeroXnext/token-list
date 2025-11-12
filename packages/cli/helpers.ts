@@ -2,6 +2,8 @@ import {TokenList, tokenListSchema} from '@tokenlist-builder/core';
 import {DEFAULT_LIST_LOGO_URI, DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME} from './constants';
 import {MutableTokenList} from './types';
 import {partitionArray} from './utils';
+import path from 'node:path';
+import * as fs from 'node:fs';
 
 export function partitionTokenList(tokenList: Omit<TokenList, "version" | "timestamp">,
                                    version: TokenList['version'] = DEFAULT_LIST_VERSION,
@@ -47,4 +49,16 @@ export function initializeTokenList({
     timestamp,
     tokens,
   };
+}
+
+export function getUniqueFilePath(dirPath: string, baseName: string, ext = 'json'): string {
+  let filePath = path.join(dirPath, `${baseName}.${ext}`);
+  let counter = 1;
+
+  while (fs.existsSync(filePath)) {
+    filePath = path.join(dirPath, `${baseName}-${counter}.${ext}`);
+    counter++;
+  }
+
+  return filePath;
 }
