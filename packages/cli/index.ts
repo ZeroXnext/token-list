@@ -36,9 +36,8 @@ yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv: A
         default: "dist",
       });
 }, async (args) => {
-  const {chains, allowedNetworkTypes, sources, verbose} = args;
+  const {chains, allowedNetworkTypes, sources, verbose, output: outputDir} = args;
   const lists = await findSources(sources);
   const classified = classify(lists, chains, allowedNetworkTypes, verbose);
-
-  output(args.output, classified);
+  output(outputDir, classified);
 }).help('help').strictCommands().parse();
