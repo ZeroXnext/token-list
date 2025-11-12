@@ -38,13 +38,7 @@ export function initializeTokenList({
   name: "Default token list",
   logoURI: "",
   tags: {},
-  version: {
-    major: 1,
-    patch: 0,
-    minor: 0,
-  },
   keywords: [],
-  timestamp: new Date().toISOString(),
   tokens: [],
 }, version: TokenList['version'] = DEFAULT_LIST_VERSION, timestamp = new Date().toLocaleTimeString()): TokenList {
   return {
