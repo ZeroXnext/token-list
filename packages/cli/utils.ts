@@ -27,6 +27,30 @@ export function partitionTokenList(tokenList: TokenList): TokenList[] {
   return tokenLists;
 }
 
+export function initializeTokenList({name, logoURI, tags, version, keywords, timestamp, tokens} = {
+  name: "Default token list",
+  logoURI: "",
+  tags: {},
+  version: {
+    major: 1,
+    patch: 0,
+    minor: 0,
+  },
+  keywords: [],
+  timestamp: new Date().toISOString(),
+  tokens: [],
+}): TokenList {
+  return {
+    name,
+    logoURI,
+    tags,
+    version,
+    keywords,
+    timestamp,
+    tokens,
+  };
+}
+
 export function createDefaultList(chainName: string): TokenList {
   return {
     name: "Default token list",
