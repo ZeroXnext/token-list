@@ -10,6 +10,7 @@
     "core:rm": "yarn workspace @tokenlist-builder/core remove",
     "cli:rm": "yarn workspace @tokenlist-builder/cli remove",
     "build": "turbo build",
+    "test": "turbo test",
     "cli:dev": "yarn workspace @tokenlist-builder/cli dev"
   },
   "devDependencies": {
