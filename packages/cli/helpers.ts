@@ -4,6 +4,8 @@ import {MutableTokenList} from './types';
 import {partitionArray} from './utils';
 import path from 'node:path';
 import * as fs from 'node:fs';
+import Ajv from 'ajv';
+import addFormats from 'ajv-formats';
 
 export function partitionTokenList(tokenList: Omit<TokenList, "version" | "timestamp">,
                                    version: TokenList['version'] = DEFAULT_LIST_VERSION,
@@ -70,4 +72,27 @@ export function normalizeTokens(tokens: TokenList['tokens']): TokenList['tokens'
       Object.hasOwn(token, 'decimals') &&
       new RegExp(tokenListSchema.definitions.TokenInfo.properties.symbol.anyOf[1].pattern).test(token.symbol)
   ));
+}
+
+
+export function normalizeTokenList(data: MutableTokenList, defaultTokenListName = DEFAULT_TOKEN_LIST_NAME, defaultVersion = DEFAULT_LIST_VERSION): TokenList[] {
+  const ajv = new Ajv();
+  const validator = ajv.addSchema(tokenListSchema);
+  addFormats(ajv);
+
+  data.tokens = normalizeTokens(data.tokens);
+  const maybePartitionedLists = (data as TokenList).tokens.length > tokenListSchema.properties.tokens.maxItems ? partitionTokenList(data, defaultVersion, defaultTokenListName) : [data as MutableTokenList];
+
+  for (let list of maybePartitionedLists) {
+    if (list.name.length > tokenListSchema.properties.name.maxLength) {
+      list.name = defaultTokenListName;
+    }
+    let result = validator.validate(tokenListSchema, list);
+    if (!result) {
+      throw new Error(validator.errors?.map(item => `${item.instancePath} ${item.message}`)?.join(", \n"));
+    }
+
+  }
+
+  return maybePartitionedLists;
 }
