@@ -972,7 +972,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commitizen@npm:^4.0.3":
+"commitizen@npm:^4.0.3, commitizen@npm:^4.3.1":
   version: 4.3.1
   resolution: "commitizen@npm:4.3.1"
   dependencies:
@@ -2755,6 +2755,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tokenlist-builder@workspace:."
   dependencies:
+    commitizen: "npm:^4.3.1"
     cz-conventional-changelog: "npm:^3.3.0"
     turbo: "npm:^2.6.0"
   languageName: unknown
