@@ -5,6 +5,7 @@ import {initializeTokenList} from '@helpers';
 import {slugify} from '@utils';
 
 function main(tokenLists: TokenList[], supportedChains: string[], supportedNetworks: string[], initialMap: TokenListsMap = new Map(), verbose: boolean): TokenListsMap {
+  // [network_type]/[chain_name]/[file_key]/[actual_list]
   const mappedTokenList: TokenListsMap = new Map();
   let seen = new Set<string>();
 
@@ -17,7 +18,7 @@ function main(tokenLists: TokenList[], supportedChains: string[], supportedNetwo
       }
     }
   }
-  // [network_type]/[chain_name]/[file_key]/[actual_list]
+
   for (const tokenList of tokenLists) {
     for (const token of tokenList.tokens) {
       const chainInfo = CHAINS_MAPPING[token.chainId];
