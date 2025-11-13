@@ -1,10 +1,10 @@
 import {TokenList} from "@tokenlist-builder/core";
 import * as fs from 'node:fs';
-import {MappedTokenLists} from '../types';
+import {TokenListsMap} from '../types';
 import path from 'node:path';
 
 function main(outputDir: string) {
-  const mapped: MappedTokenLists = new Map();
+  const mapped: TokenListsMap = new Map();
 
   // Read all chain types (e.g., 'evm', 'solana', etc.)
   const [, , ...lists] = fs.readdirSync(outputDir, {recursive: true}).map(item => item.toString().split("/"));

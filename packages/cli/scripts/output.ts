@@ -1,9 +1,9 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import {MappedTokenLists} from '../types';
+import {TokenListsMap} from '../types';
 import {getUniqueFilePath} from '../helpers';
 
-function main(outputDir: string, tokenListMapping: MappedTokenLists, override = true) {
+function main(outputDir: string, tokenListMapping: TokenListsMap, override = true) {
   for (const [chainType, chainMap] of tokenListMapping.entries()) {
     for (const [chainName, tokenList] of chainMap.entries()) {
       const dirPath = path.join(outputDir, chainType, chainName);

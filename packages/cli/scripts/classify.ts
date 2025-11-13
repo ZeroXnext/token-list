@@ -1,11 +1,11 @@
 import {TokenList, tokenListSchema} from "@tokenlist-builder/core";
-import {MappedTokenLists} from '../types';
+import {TokenListsMap} from '../types';
 import {CHAINS_MAPPING} from '../constants';
 import {initializeTokenList} from '../helpers';
 import {slugify} from '../utils';
 
-function main(tokenLists: TokenList[], supportedChains: string[], supportedNetworks: string[], initialMap: MappedTokenLists = new Map(), verbose: boolean): MappedTokenLists {
-  const mappedTokenList: MappedTokenLists = new Map();
+function main(tokenLists: TokenList[], supportedChains: string[], supportedNetworks: string[], initialMap: TokenListsMap = new Map(), verbose: boolean): TokenListsMap {
+  const mappedTokenList: TokenListsMap = new Map();
   let seen = new Set<string>();
 
   for (let [, chainTypes] of initialMap.entries()) {
