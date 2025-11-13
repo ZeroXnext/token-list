@@ -1,5 +1,5 @@
 import {TokenList, tokenListSchema} from '@tokenlist-builder/core';
-import {DEFAULT_LIST_LOGO_URI, DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME} from '@constants';
+import {DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME} from '@constants';
 import {MutableTokenList} from '@types';
 import path from 'node:path';
 import * as fs from 'node:fs';
@@ -10,32 +10,9 @@ import load from './load';
 import resolve from './resolve';
 import output from './output';
 import partition from './partition';
+import initializeTokenList from './initialize-token-list';
 
-export {classify, load, resolve, output};
-
-export function initializeTokenList({
-                                      name,
-                                      logoURI,
-                                      tags,
-                                      keywords,
-                                      tokens
-                                    }: Omit<TokenList, "version" | "timestamp"> = {
-  name: DEFAULT_TOKEN_LIST_NAME,
-  logoURI: DEFAULT_LIST_LOGO_URI,
-  tags: {},
-  keywords: [],
-  tokens: [],
-}, version: TokenList['version'] = DEFAULT_LIST_VERSION): TokenList {
-  return {
-    name,
-    logoURI,
-    tags,
-    version,
-    keywords,
-    timestamp: new Date().toISOString(),
-    tokens,
-  };
-}
+export {classify, load, resolve, output, initializeTokenList};
 
 export function getUniqueFilePath(dirPath: string, baseName: string, ext = 'json'): string {
   let filePath = path.join(dirPath, `${baseName}.${ext}`);
