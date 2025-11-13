@@ -1,6 +1,6 @@
 import {TokenList} from "@tokenlist-builder/core";
 import * as fs from 'node:fs';
-import {TokenListsMap} from '../src/types';
+import {TokenListsMap} from '@types';
 import path from 'node:path';
 
 function main(outputDir: string) {
