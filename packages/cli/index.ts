@@ -11,7 +11,7 @@ import {
   LIST_SOURCES
 } from './constants';
 import output from './scripts/output';
-import parse from './scripts/parse';
+import parse from './scripts/load';
 
 yargs(hideBin(process.argv)).command("generate", "Generate token list", (argv) => {
   return argv.option("verbose", {type: "boolean", alias: "v", default: false})
