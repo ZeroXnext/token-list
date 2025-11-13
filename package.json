@@ -13,8 +13,11 @@
     "cli:dev": "yarn workspace @tokenlist-builder/cli dev"
   },
   "devDependencies": {
+    "@types/jest": "^30.0.0",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.5",
     "turbo": "^2.6.0"
   },
   "config": {
