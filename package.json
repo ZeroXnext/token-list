@@ -13,6 +13,12 @@
     "cli:dev": "yarn workspace @tokenlist-builder/cli dev"
   },
   "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0",
     "turbo": "^2.6.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
