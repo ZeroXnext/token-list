@@ -8,5 +8,5 @@ export const entry =
           type: "string",
           alias: "o",
           default: "dist/src",
-        });
+        }).help('help');
 
