@@ -22,13 +22,16 @@ function addBumpCommand(entry: Entry): void {
         const res = await fetch(`${baseUrl}${key}`);
         if (res.status === 404) {
           // ignore, this means that the list is new
+          console.info(`New list not versioned ${localList.name}, path: ${key}. skipping bump`)
           continue;
         }
 
         const remoteList = await res.json() as TokenList;
 
         const changed = bump(remoteList, localList);
-        changed && outputBasic(outputDir, localList);
+        changed && outputBasic(key, localList);
+      } catch (err) {
+        console.error(err);
       }
     }
   });
