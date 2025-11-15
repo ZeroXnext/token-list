@@ -1,14 +1,9 @@
-import {
-  DEFAULT_LIST_VERSION,
-  DEFAULT_NETWORK_TYPES,
-  DEFAULT_SUPPORTED_CHAINS,
-  DEFAULT_TOKEN_LIST_NAME,
-  LIST_SOURCES
-} from '@constants';
+import {DEFAULT_LIST_VERSION, DEFAULT_NETWORK_TYPES, DEFAULT_TOKEN_LIST_NAME, LIST_SOURCES} from '@constants';
 import {classify} from '@helpers';
 import {Entry, SeenKey} from '@types';
 import fetchExternal from '../helpers/fetch-external';
 import output from '../helpers/output';
+import validate from '../helpers/validate';
 
 function addGenerateCommand(entry: Entry) {
   entry
@@ -61,7 +56,12 @@ function addGenerateCommand(entry: Entry) {
           }
           const classified = classify(list, allowedNetworkTypes, outputDir, seen, version, defaultListName);
           for (const [filepath, list] of classified.entries()) {
-            output(filepath, list);
+            const [valid, errors] = validate(list);
+            if (valid) {
+              output(filepath, list);
+            } else {
+              console.warn(`${list.name}`, errors);
+            }
           }
         }
       });
