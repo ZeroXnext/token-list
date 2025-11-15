@@ -45,8 +45,8 @@ export default function classify(tokenList: TokenList, supportedNetworks: string
     }
 
     if (offset > -1) {
+      listPath = `${rootDir}/${type}/${name}/${slugify(tokenListName)}-${offset}.json`;
       tokenListName = tokenList.name + ` ${offset}`;
-      listPath = `${rootDir}/${type}/${name}/${slugify(name)}-${offset}.json`;
     }
 
     let list: Mutable<TokenList> | undefined = mapping.get(listPath);
