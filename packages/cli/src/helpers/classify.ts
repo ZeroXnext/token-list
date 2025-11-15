@@ -9,8 +9,15 @@ export default function classify(tokenList: TokenList, supportedNetworks: string
   for (let i = Math.max(offset, 0); i < tokenList.tokens.length; i++) {
 
     const token = tokenList.tokens[i];
-    // 1. Ignore if token doesn't have a chain id
-    if (!token.chainId || !token.address) {
+    // 1. Ignore if token is invalid
+    if (!token.chainId ||
+        !token.address ||
+        token.logoURI === null ||
+        token.name.length > tokenListSchema.definitions.TokenInfo.properties.name.maxLength ||
+        token.symbol.length > tokenListSchema.definitions.TokenInfo.properties.symbol.maxLength ||
+        !Object.hasOwn(token, 'decimals') ||
+        !new RegExp(tokenListSchema.definitions.TokenInfo.properties.symbol.anyOf[1].pattern).test(token.symbol)
+    ) {
       continue;
     }
 
