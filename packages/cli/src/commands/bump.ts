@@ -15,7 +15,7 @@ function addBumpCommand(entry: Entry): void {
     const repo = parseGitRemoteUrl(stderr);
     const baseUrl = `https://raw.githubusercontent.com/${repo.username}/${repo.repo}`;
 
-    const localLists = loadFlatLocal(outputDir);
+    const [localLists] = loadFlatLocal(outputDir);
 
     for (const [key, localList] of localLists.entries()) {
       try {
