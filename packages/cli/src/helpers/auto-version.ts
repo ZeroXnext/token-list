@@ -13,6 +13,8 @@ interface TokenListChangeLog {
  * - Increment major version when tokens are removedIncrement minor version when tokens are added
  * - Increment patch version when tokens already on the list have minor details changed (name, symbol, logo URL, decimals)
  * - Changing a token address or chain ID is considered both a remove and an add, and should be a major version update.
+ * @param oldList – The old token list
+ * @param newList – The new list containing modifications
  */
 function autoVersion(oldList: TokenList, newList: Mutable<TokenList>) {
   const added: TokenList['tokens'] = [];
