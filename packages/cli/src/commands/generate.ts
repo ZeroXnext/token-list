@@ -8,7 +8,7 @@ import {
 import {classify, load, output, resolve} from '@helpers';
 import {Entry} from '@types';
 
-export default function generate(entry: Entry) {
+function addGenerateCommand(entry: Entry) {
   entry
       .command("generate", "Generate token list", (argv) => {
         return argv.option("verbose", {type: "boolean", alias: "v", default: false})
@@ -65,3 +65,5 @@ export default function generate(entry: Entry) {
         output(outputDir, classified, true);
       });
 }
+
+export default addGenerateCommand
