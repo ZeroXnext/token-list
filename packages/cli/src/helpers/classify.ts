@@ -4,7 +4,7 @@ import {CHAINS_MAPPING} from '@constants';
 import {initializeTokenList} from '@helpers';
 import {slugify} from '@utils';
 
-export default function classify(tokenList: TokenList, supportedNetworks: string[], supportedChains: string[], rootDir: string, seen: Set<SeenKey>, offset = -1): Map<ListPath, TokenList> {
+export default function classify(tokenList: TokenList, supportedNetworks: string[], supportedChains: string[], rootDir: string, seen: Set<SeenKey>, version = tokenList.version, offset = -1): Map<ListPath, TokenList> {
   const mapping = new Map<ListPath, TokenList>([]);
   for (let i = Math.max(offset, 0); i < tokenList.tokens.length; i++) {
 
@@ -54,7 +54,7 @@ export default function classify(tokenList: TokenList, supportedNetworks: string
     const maxTokensPerList = tokenListSchema.properties.tokens.maxItems;
     if (list?.tokens.length ?? 0 > maxTokensPerList) {
       offset += 1;
-      classify(tokenList, supportedNetworks, supportedChains, rootDir, seen, offset);
+      classify(tokenList, supportedNetworks, supportedChains, rootDir, seen, version, offset);
     }
 
     // 5. Push token its path
