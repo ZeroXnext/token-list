@@ -5,7 +5,14 @@ import {SeenKey} from '@types';
 import {CHAINS_MAPPING} from '@constants';
 
 export default function load(outputDir: string): [Map<string, TokenList>, Set<SeenKey>] {
-  const [, , ...paths] = fs.readdirSync(outputDir, {recursive: true});
+  const paths = fs.readdirSync(outputDir, {recursive: true}).filter((p) => {
+    try {
+      return fs.statSync(path.join(outputDir, p.toString())).isFile();
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
+  });
   const seen = new Set<SeenKey>();
   return [new Map<string, TokenList>(paths.map(key => {
     const list = JSON.parse(fs.readFileSync(path.join(outputDir, key.toString()), 'utf-8')) as TokenList;
