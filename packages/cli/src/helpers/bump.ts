@@ -9,8 +9,9 @@ import {timestamp} from '@utils';
  * - Changing a token address or chain ID is considered both a remove and an add, and should be a major version update.
  * @param oldList – The old token list
  * @param newList – The new list containing modifications
+ * @returns boolean - Indicates if it has modified the version or not
  */
-function bump(oldList: TokenList, newList: Mutable<TokenList>) {
+function bump(oldList: TokenList, newList: Mutable<TokenList>): boolean {
   const version: Mutable<TokenList['version']> = oldList.version;
   let increment: keyof TokenList['version'] | undefined;
 
@@ -44,6 +45,8 @@ function bump(oldList: TokenList, newList: Mutable<TokenList>) {
       newList.timestamp = timestamp();
     }
   }
+
+  return !!increment;
 }
 
 export default bump;
