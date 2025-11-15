@@ -4,7 +4,7 @@ import {CHAINS_MAPPING} from '@constants';
 import {initializeTokenList} from '@helpers';
 import {slugify} from '@utils';
 
-export function classify(tokenList: TokenList, supportedNetworks: string[], supportedChains: string[], rootDir: string, seen: Set<SeenKey>, offset = -1): Map<string, TokenList> {
+export default function classify(tokenList: TokenList, supportedNetworks: string[], supportedChains: string[], rootDir: string, seen: Set<SeenKey>, offset = -1): Map<ListPath, TokenList> {
   const mapping = new Map<ListPath, TokenList>([]);
   for (let i = Math.max(offset, 0); i < tokenList.tokens.length; i++) {
 
