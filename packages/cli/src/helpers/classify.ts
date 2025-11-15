@@ -41,7 +41,7 @@ export default function classify(tokenList: TokenList, supportedNetworks: string
     let tokenListName: string = tokenList.name;
 
     // 5. Check and normalize list name
-    if (tokenListName > tokenListSchema.properties.name.maxLength) {
+    if (tokenListName.length > tokenListSchema.properties.name.maxLength) {
       tokenListName = defaultTokenListName;
     }
 
