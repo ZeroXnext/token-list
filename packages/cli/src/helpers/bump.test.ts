@@ -1,4 +1,4 @@
-import autoVersion from "./bump";
+import bump from "./bump";
 import { TokenList } from "@tokenlist-builder/core";
 import {timestamp} from '@utils';
 // mock timestamp()
@@ -20,13 +20,13 @@ function makeList(tokens: any[], version = { major: 1, minor: 0, patch: 0 }) {
 const A = { address: "0x1", chainId: 1, name: "A", symbol: "A", decimals: 18, logoURI: "", tags: [] };
 const B = { address: "0x2", chainId: 1, name: "B", symbol: "B", decimals: 18, logoURI: "", tags: [] };
 
-describe("autoVersion", () => {
+describe("bump", () => {
 
   test("adds a token → bumps minor", () => {
     const oldList = makeList([A], { major: 1, minor: 0, patch: 0 });
     const newList = makeList([A, B], { major: 1, minor: 0, patch: 0 });
 
-    autoVersion(oldList, newList);
+    bump(oldList, newList);
 
     expect(newList.version.minor).toBe(1);
     expect(timestamp).toHaveBeenCalled();
@@ -36,7 +36,7 @@ describe("autoVersion", () => {
     const oldList = makeList([A, B], { major: 1, minor: 2, patch: 0 });
     const newList = makeList([A], { major: 1, minor: 2, patch: 0 });
 
-    autoVersion(oldList, newList);
+    bump(oldList, newList);
 
     expect(newList.version.major).toBe(2);
     expect(timestamp).toHaveBeenCalled();
@@ -46,7 +46,7 @@ describe("autoVersion", () => {
     const oldList = makeList([A]);
     const newList = makeList([{ ...A, symbol: "NEW" }]);
 
-    autoVersion(oldList, newList);
+    bump(oldList, newList);
 
     expect(newList.version.patch).toBe(1);
     expect(timestamp).toHaveBeenCalled();
@@ -56,7 +56,7 @@ describe("autoVersion", () => {
     const oldList = makeList([A]);
     const newList = makeList([{ ...A, address: "0xAAAA" }]);
 
-    autoVersion(oldList, newList);
+    bump(oldList, newList);
 
     // the code treats this as remove + add, so major++
     expect(newList.version.major).toBe(2);
@@ -66,7 +66,7 @@ describe("autoVersion", () => {
     const oldList = makeList([A]);
     const newList = makeList([A]);
 
-    autoVersion(oldList, newList);
+    bump(oldList, newList);
 
     expect(newList.version).toEqual(oldList.version);
     expect(newList.timestamp).toBe(oldList.timestamp);
@@ -76,7 +76,7 @@ describe("autoVersion", () => {
     const oldList = makeList([A]);
     const newList = makeList([ { ...A, symbol: "MOD" }, B ]);
 
-    autoVersion(oldList, newList);
+    bump(oldList, newList);
 
     // because your code overwrites increment inside loops
     expect(newList.version.patch).toBe(1);
@@ -87,7 +87,7 @@ describe("autoVersion", () => {
     const newList = makeList([], { major: 1, minor: 0, patch: 0 });
 
     // newList contains no A, so major bump expected
-    autoVersion(oldList, newList);
+    bump(oldList, newList);
 
     expect(newList.version.major).toBe(2);
   });
@@ -96,7 +96,7 @@ describe("autoVersion", () => {
     const oldList = makeList([A]);
     const newList = makeList([B]);
 
-    autoVersion(oldList, newList);
+    bump(oldList, newList);
 
     // expected major++, but your code wrongly handles `.find`
     expect(newList.version.major).toBe(2);
