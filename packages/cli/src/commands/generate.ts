@@ -5,8 +5,10 @@ import {
   DEFAULT_TOKEN_LIST_NAME,
   LIST_SOURCES
 } from '@constants';
-import {classify, load, output, resolve} from '@helpers';
-import {Entry} from '@types';
+import {classify} from '@helpers';
+import {Entry, SeenKey} from '@types';
+import fetchExternal from '../helpers/fetch-external';
+import outputBasic from '../helpers/output-basic';
 
 function addGenerateCommand(entry: Entry) {
   entry
@@ -31,13 +33,6 @@ function addGenerateCommand(entry: Entry) {
               default: LIST_SOURCES,
               choices: LIST_SOURCES
             })
-            .option("chains", {
-              type: "array",
-              description: "The chains to filter",
-              alias: "c",
-              default: DEFAULT_SUPPORTED_CHAINS,
-              choices: DEFAULT_SUPPORTED_CHAINS
-            })
             .option("allowedNetworkTypes", {
               type: "array",
               alias: "ant",
@@ -47,23 +42,29 @@ function addGenerateCommand(entry: Entry) {
             });
       }, async (args) => {
         const {
-          chains,
           allowedNetworkTypes,
           sources,
-          verbose,
           output: outputDir,
           defaultListName,
           defaultListVersion: [major, patch, minor]
         } = args;
-        const lists = await resolve(sources, defaultListName, {
+        const lists = await fetchExternal(sources);
+        const version = {
           major: parseInt(major.toString()),
           patch: parseInt(patch.toString()),
           minor: parseInt(minor.toString())
-        });
-        const [initialMap, initialSeen] = load(outputDir);
-        const classified = classify(lists.flat(), chains, allowedNetworkTypes, initialMap, initialSeen, verbose);
-        output(outputDir, classified, true);
+        };
+        let seen = new Set<SeenKey>();
+        for (const list of lists) {
+          if (!list) {
+            continue;
+          }
+          const classified = classify(list, allowedNetworkTypes, outputDir, seen, version, defaultListName);
+          for (const [filepath, list] of classified.entries()) {
+            outputBasic(filepath, list);
+          }
+        }
       });
 }
 
-export default addGenerateCommand
+export default addGenerateCommand;
