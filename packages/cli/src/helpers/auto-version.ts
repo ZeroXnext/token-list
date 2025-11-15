@@ -27,7 +27,6 @@ function autoVersion(oldList: TokenList, newList: Mutable<TokenList>) {
     if (!tokenInfo) {
       // Token has been removed
       increment = "major";
-      // removed.push(token);
     }
 
     if (tokenInfo && (
