@@ -1,7 +1,7 @@
 import {TokenList} from '@tokenlist-builder/core';
 import {DEFAULT_LIST_LOGO_URI, DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME} from '@constants';
 
-function initializeTokenList({
+function createList({
                                name,
                                logoURI,
                                tags,
@@ -25,4 +25,4 @@ function initializeTokenList({
   };
 }
 
-export default initializeTokenList;
+export default createList;

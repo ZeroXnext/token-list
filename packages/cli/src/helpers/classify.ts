@@ -1,8 +1,8 @@
 import {TokenList, tokenListSchema} from "@tokenlist-builder/core";
 import {Chain, ListPath, Mutable, SeenKey} from '@types';
 import {CHAINS_MAPPING, DEFAULT_TOKEN_LIST_NAME} from '@constants';
-import {initializeTokenList} from '@helpers';
 import {slugify} from '@utils';
+import createList from './create-list';
 
 const mapping = new Map<ListPath, TokenList>([]);
 export default function classify(tokenList: TokenList, supportedNetworks: string[], rootDir: string, seen: Set<SeenKey>, version = tokenList.version, defaultTokenListName = DEFAULT_TOKEN_LIST_NAME, offset = -1): Map<ListPath, TokenList> {
@@ -59,7 +59,7 @@ export default function classify(tokenList: TokenList, supportedNetworks: string
 
     // 7. Check if there is an existing list, otherwise initialize empty tokens
     if (!list) {
-      mapping.set(listPath, initializeTokenList({
+      mapping.set(listPath, createList({
         name: tokenListName,
         tags: tokenList.tags,
         tokens: [],
