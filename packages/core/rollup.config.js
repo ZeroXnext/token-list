@@ -21,7 +21,7 @@ export default {
     nodeResolve({browser: true}), // resolve modules for browser
     commonjs(),                     // convert CJS to ESM
     json(),                         // import JSON schemas
-    typescript({tsconfig: './tsconfig.json'}) // transpile TS
+    typescript({tsconfig: './tsconfig.build.json'}) // transpile TS
   ],
   external: ['ajv'] // don't bundle AJV;
 };
