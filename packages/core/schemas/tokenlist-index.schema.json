@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ListIndexItem",
+  "allOf": [
+    {
+      "$ref": "https://uniswap.org/tokenlist.schema.json"
+    },
+    {
+      "type": "object",
+      "not": {
+        "required": ["tokens"]
+      }
+    },
+    {
+      "required": ["contents", "timestamp"],
+      "properties": {
+        "version": {
+          "$ref": "https://uniswap.org/tokenlist.schema.json#definitions.Version",
+          "description": "The version of the list, used in change detection",
+          "examples": [
+            {
+              "major": 1,
+              "minor": 0,
+              "patch": 0
+            }
+          ]
+        },
+        "contents": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL pointing to the actual token list JSON"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp of this index version"
+        }
+      }
+    }
+  ]
+}
