@@ -5,15 +5,10 @@
     "packages/*"
   ],
   "scripts": {
-    "core:add": "yarn workspace @tokenlist-builder/core add",
-    "cli:add": "yarn workspace @tokenlist-builder/cli add",
-    "core:rm": "yarn workspace @tokenlist-builder/core remove",
-    "cli:rm": "yarn workspace @tokenlist-builder/cli remove",
+    "core": "yarn workspace @tokenlist-builder/core",
+    "cli": "yarn workspace @tokenlist-builder/cli",
     "build": "turbo build",
-    "core:build": "yarn workspace @tokenlist-builder/core build",
-    "test": "turbo test",
-    "cli:dev": "yarn workspace @tokenlist-builder/cli dev",
-    "cli:test": "yarn workspace @tokenlist-builder/cli test"
+    "test": "turbo test"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
