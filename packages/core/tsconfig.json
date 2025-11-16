@@ -3,7 +3,6 @@
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src",
-    "module": "Node16",
     "target": "ES2023",
     "declarationDir": "dist",
     "composite": true,
@@ -11,7 +10,6 @@
     "moduleResolution": "node"
   },
   "include": [
-    "src/**/*",
-    "jest.config.ts"
+    "src/**/*"
   ]
 }
