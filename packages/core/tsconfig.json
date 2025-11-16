@@ -11,6 +11,10 @@
   },
   "include": [
     "src/**/*",
-    "tests"
+  ],
+  "references": [
+    {
+      "path": "tsconfig.jest.json"
+    }
   ]
 }
