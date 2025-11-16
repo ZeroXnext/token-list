@@ -1,10 +1,12 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
     "target": "ES2023",
-    "declarationDir": "dist",
     "composite": true,
+    "noEmit": true,
+    "types": [
+      "jest"
+    ],
     "resolveJsonModule": true,
     "moduleResolution": "node"
   },

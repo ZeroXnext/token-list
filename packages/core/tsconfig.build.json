@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2023",
+    "rootDir": "src",
+    "outDir": "dist",
+    "declaration": true,
+    "declarationDir": "dist",
+    "composite": false,           // turn this OFF unless you're actually using project references
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "paths": {
+      "@utils": ["src/utils.ts"],
+      "@types": ["src/types.ts"],
+      "@constants": ["src/constants.ts"],
+      "@helpers": ["src/helpers/index.ts"]
+    }
+  },
+  "include": ["src/**/*"]
+}
