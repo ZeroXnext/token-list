@@ -6,6 +6,7 @@ import bump from '../helpers/bump';
 import output from '../helpers/output';
 import {parseGitRemoteUrl} from '@utils';
 import {GITHUB_CONTENT_BASE_URL} from '@constants';
+import path from 'node:path';
 
 
 function addBumpCommand(entry: Entry): void {
@@ -14,14 +15,15 @@ function addBumpCommand(entry: Entry): void {
     const {output: outputDir} = argv;
     const stderr = childProcess.execSync("git remote get-url origin", {encoding: 'utf8'});
     const repo = parseGitRemoteUrl(stderr);
-    const baseUrl = `${GITHUB_CONTENT_BASE_URL}/${repo.username}/${repo.repo}`;
+    const baseUrl = new URL(GITHUB_CONTENT_BASE_URL);
+    baseUrl.pathname = path.join(repo.username, repo.repo);
     const [localLists] = load(outputDir);
     for (const [key, localList] of localLists.entries()) {
       try {
-        const res = await fetch(`${baseUrl}${key}`);
+        const res = await fetch(path.join(baseUrl.toString(), key));
         if (res.status === 404) {
           // ignore, this means that the list is new
-          console.info(`New list not versioned ${localList.name}, path: ${key}. skipping bump`)
+          console.info(`New list not versioned ${localList.name}, path: ${key}. skipping bump`);
           continue;
         }
 
