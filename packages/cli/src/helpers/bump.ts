@@ -1,5 +1,4 @@
-import {timestamp, TokenList} from '@tokenlist-builder/core';
-import {Mutable} from '@types';
+import {Mutable, timestamp, TokenList} from '@tokenlist-builder/core';
 
 /**
  * List versions must follow the rules:

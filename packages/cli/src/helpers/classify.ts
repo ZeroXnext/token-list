@@ -1,5 +1,5 @@
-import {slugify, TokenList, tokenListSchema} from "@tokenlist-builder/core";
-import {Chain, ListPath, Mutable, SeenKey} from '@types';
+import {slugify, TokenList, tokenListSchema, Mutable} from "@tokenlist-builder/core";
+import {Chain, ListPath, SeenKey} from '@types';
 import {CHAINS_MAPPING, DEFAULT_TOKEN_LIST_NAME} from '@constants';
 import createList from './create-list';
 const mapping = new Map<ListPath, TokenList>([]);

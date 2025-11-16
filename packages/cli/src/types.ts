@@ -11,11 +11,6 @@ export interface ListIndex {
   lists: Array<Omit<TokenList, 'tokens'> & Record<"contents", ListURL>>;
 }
 
-export type Mutable<T> = {
-  -readonly [P in keyof T]: T[P];
-};
-
-
 export type Entry = typeof entry;
 
 export type GHUserRawContentURL = `https://raw.githubusercontent.com`;
