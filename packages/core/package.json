@@ -9,6 +9,7 @@
     "types": "./dist/index.d.ts"
   },
   "scripts": {
+    "test": "jest",
     "build": "rollup -c && tsc --declaration --emitDeclarationOnly --outDir dist"
   },
   "dependencies": {
