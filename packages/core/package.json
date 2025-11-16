@@ -10,7 +10,7 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "rollup -c && tsc --declaration --emitDeclarationOnly --outDir dist"
+    "build": "rollup -c && tsc"
   },
   "dependencies": {
     "@uniswap/token-lists": "1.0.0-beta.32",
