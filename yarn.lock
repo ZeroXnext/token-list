@@ -1359,6 +1359,7 @@ __metadata:
     "@rollup/plugin-typescript": "npm:^12.3.0"
     "@uniswap/token-lists": "npm:1.0.0-beta.32"
     ajv: "npm:^8.17.1"
+    ajv-formats: "npm:^3.0.1"
     rollup: "npm:^4.53.2"
     tslib: "npm:^2.8.1"
     typescript: "npm:^5.9.3"

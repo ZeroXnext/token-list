@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "@uniswap/token-lists": "1.0.0-beta.32",
-    "ajv": "^8.17.1"
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^29.0.0",
