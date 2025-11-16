@@ -1,14 +1,14 @@
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
-import schema from "../schemas/tokenlist-rules.schema.json";
+import schema from "../schemas/config.schema.json";
 
 const ajv = new Ajv({allErrors: true});
 addFormats(ajv);
 
 const validate = ajv.compile(schema);
 
-describe("Token List Rules Schema", () => {
-  it("accepts a fully valid rules object", () => {
+describe("Config Schema", () => {
+  it("accepts a fully valid config object", () => {
     const data = {
       allowedChains: ["ethereum", "Polygon"],
       disallowedChains: ["bsc"],
