@@ -1,5 +1,5 @@
-import {Mutable} from '../types';
-import {timestamp} from '../utils';
+import {Mutable} from '@types';
+import {timestamp} from '@utils';
 import {TokenList} from "@uniswap/token-lists";
 
 /**

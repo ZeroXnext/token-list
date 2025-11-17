@@ -1,4 +1,4 @@
-import {slugify} from './utils';
+import {slugify} from '@utils';
 
 describe("utils", () => {
   describe("slugify", () => {
