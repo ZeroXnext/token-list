@@ -1,5 +1,5 @@
-import {TokenList} from '@tokenlist-builder/core';
 import {DEFAULT_LIST_LOGO_URI, DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME} from '@constants';
+import {TokenList} from '@types';
 
 function createList({
                                name,

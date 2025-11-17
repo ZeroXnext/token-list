@@ -35,13 +35,4 @@ export const DEFAULT_NETWORK_TYPES = ["testnet", "mainnet"];
 export const DEFAULT_SUPPORTED_CHAINS = Object.values(CHAINS_MAPPING).map(item => item.name);
 
 
-export const DEFAULT_LIST_VERSION = {
-  major: 1,
-  patch: 0,
-  minor: 0,
-};
-
 export const GITHUB_CONTENT_BASE_URL = "https://raw.githubusercontent.com"
-
-export const DEFAULT_TOKEN_LIST_NAME = "Token list";
-export const DEFAULT_LIST_LOGO_URI = "";
