@@ -1,12 +1,11 @@
 import {Entry} from '@types';
 import * as childProcess from 'node:child_process';
-import load from '../helpers/load';
+import load from '@helpers/load';
 import {bump, TokenList} from '@tokenlist-builder/core';
-import output from '../helpers/output';
+import output from '@helpers/output';
 import {parseGitRemoteUrl} from '@utils';
 import {GITHUB_CONTENT_BASE_URL} from '@constants';
 import path from 'node:path';
-
 
 function addBumpCommand(entry: Entry): void {
   entry.command("bump", "It auto-updates the version of the token list, according to rules", () => {

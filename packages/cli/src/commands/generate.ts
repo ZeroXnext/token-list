@@ -1,9 +1,9 @@
 import {classify, DEFAULT_LIST_VERSION, DEFAULT_TOKEN_LIST_NAME, SeenKey} from "@tokenlist-builder/core";
 import {DEFAULT_NETWORK_TYPES, LIST_SOURCES} from '@constants';
 import {Entry} from '@types';
-import fetchExternal from '../helpers/fetch-external';
-import output from '../helpers/output';
-import validate from '../helpers/validate';
+import fetchExternal from '@helpers/fetch-external';
+import output from '@helpers/output';
+import validate from '@helpers/validate';
 
 function addGenerateCommand(entry: Entry) {
   entry
