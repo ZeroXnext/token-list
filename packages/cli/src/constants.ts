@@ -32,7 +32,6 @@ export const LIST_SOURCES = [
 ];
 
 export const DEFAULT_NETWORK_TYPES = ["testnet", "mainnet"];
-export const DEFAULT_SUPPORTED_CHAINS = Object.values(CHAINS_MAPPING).map(item => item.name);
 
 
 export const GITHUB_CONTENT_BASE_URL = "https://raw.githubusercontent.com"
