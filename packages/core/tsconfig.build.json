@@ -6,6 +6,7 @@
     "outDir": "dist",
     "declaration": true,
     "declarationDir": "dist",
+    "baseUrl": ".",
     "composite": false,           // turn this OFF unless you're actually using project references
     "resolveJsonModule": true,
     "moduleResolution": "node",
