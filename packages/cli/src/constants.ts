@@ -1,4 +1,4 @@
-import {Chain} from '@types';
+import {Chain} from '@tokenlist-builder/core';
 
 export const CHAINS_MAPPING: Record<number, Chain> = {
   1: {name: "ethereum", type: "mainnet"},
