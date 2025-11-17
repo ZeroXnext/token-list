@@ -1,8 +1,7 @@
 import {Entry} from '@types';
 import * as childProcess from 'node:child_process';
 import load from '../helpers/load';
-import {TokenList} from '@tokenlist-builder/core';
-import bump from '../helpers/bump';
+import {bump, TokenList} from '@tokenlist-builder/core';
 import output from '../helpers/output';
 import {parseGitRemoteUrl} from '@utils';
 import {GITHUB_CONTENT_BASE_URL} from '@constants';

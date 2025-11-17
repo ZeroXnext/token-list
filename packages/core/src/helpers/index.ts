@@ -1,1 +1,3 @@
-export default {}
+import bump from './bump';
+
+export {bump};
