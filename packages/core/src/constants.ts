@@ -36,7 +36,7 @@ export const GITHUB_CONTENT_BASE_URL = "https://raw.githubusercontent.com";
 
 export const DEFAULT_TOKEN_LIST_NAME = "Token list";
 
-export const DEFAULT_OUTPUT_DIR = "dist/src";
+export const DEFAULT_OUTPUT_DIR = "dist";
 
 export const SYNC_SOURCES = [
   "https://raw.githubusercontent.com/jab416171/uniswap-pairtokens/master/uniswap_pair_tokens.json",
