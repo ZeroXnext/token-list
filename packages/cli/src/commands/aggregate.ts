@@ -33,8 +33,8 @@ export default function addAggregate(entry: Entry, config: Config) {
 
     const indexes: ListIndex[] = [];
     // Build the existent directories based on provided input and then load each index
-    forEachIndex((dirPath, indexPath) => {
-      const [loaded] = load(dirPath, config.chainsMapping);
+    forEachIndex((_, indexPath) => {
+      const [loaded] = load(config);
       const listIndex = buildIndex(path.join(config.contentBaseURL, username, repo), path.join(config.outputDir, indexPath), loaded);
       indexes.push(listIndex);
     }, config);
