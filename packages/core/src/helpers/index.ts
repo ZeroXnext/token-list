@@ -1,4 +1,5 @@
 import bump from './bump';
 import createList from "./create-list"
 import classify from './classify';
-export {bump, createList, classify};
+import supportedChains from "./supported-chains"
+export {bump, createList, classify, supportedChains};

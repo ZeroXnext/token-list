@@ -1,10 +1,12 @@
-import {TokenList} from '@uniswap/token-lists';
+import {TokenList, Version} from '@uniswap/token-lists';
+import {GITHUB_CONTENT_BASE_URL} from '@constants';
 
 export interface TokenListIndex {
   timestamp: string;
   version: TokenList['version'],
   lists: (Omit<TokenList, "tokens"> & Record<"contents", string>)[],
 }
+
 export {TokenList};
 
 export type Mutable<T> = {
@@ -40,4 +42,31 @@ export type ChainMappingType = Map<number, Chain>
 export interface ListIndex {
   timestamp: string; // representing last updated at
   lists: Array<Omit<TokenList, 'tokens'> & Record<"contents", ListURL>>;
+}
+
+type ChainValue = NonNullable<Config['chainsMapping']> extends Map<any, infer V> ? V : never; // Chain
+
+export interface Plugin {
+  name: string;
+  description: string;
+}
+
+export interface Config<T = ChainMappingType> {
+  verbose: boolean;
+  defaultLogoUrl: string;
+  chainsMapping: T;
+  defaultListVersion: Version
+  outputDir: string;
+  indexFileName: string;
+  defaultTokenListName: string;
+  contentBaseURL: GHUserRawContentURL | (string & {});
+  syncSources: string[];
+  allowedChains: ChainValue['name'][];
+  disallowedChains: ChainValue['name'][];
+  allowedNetworkTypes: ChainValue['type'][];
+  disallowedNetworkTypes: ChainValue['type'][];
+  allowedTokens: `0x${string}`[];
+  disallowedTokens: `0x${string}`[];
+  fileNamePattern: string;
+  plugins: Plugin[];
 }

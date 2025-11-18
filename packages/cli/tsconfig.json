@@ -11,7 +11,6 @@
     "paths": {
       "@utils": ["src/utils.ts"],
       "@types": ["src/types.ts"],
-      "@constants": ["src/constants.ts"],
       "@helpers/*": ["src/helpers/*"]
     }
   },

@@ -1,8 +1,8 @@
-import {Chain, ListPath, Mutable, SeenKey} from '@types';
 import {schema as tokenListSchema, TokenList} from '@uniswap/token-lists';
+import {Chain, ListPath, Mutable, SeenKey} from '@types';
+import createList from './create-list';
 import {DEFAULT_CHAINS, DEFAULT_TOKEN_LIST_NAME} from '@constants';
 import {slugify} from '@utils';
-import {createList} from '@helpers';
 
 const mapping = new Map<ListPath, TokenList>([]);
 

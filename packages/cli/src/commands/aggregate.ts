@@ -1,46 +1,21 @@
 import {Entry} from '@types';
-import allNetworkTypes from '@helpers/all-network-types';
-import allChainNames from '@helpers/all-chain-names';
 import load from '@helpers/load';
 import forEachIndex from '@helpers/for-each-index';
 import buildIndex from '@helpers/build-index';
 import path from 'node:path';
-import {GITHUB_CONTENT_BASE_URL} from '@constants';
 import {parseGitRemoteUrl} from '@utils';
 import childProcess from 'node:child_process';
 import mergeIndexes from '@helpers/merge-indexes';
-import {ListIndex} from '@tokenlist-builder/core';
+import {Config, ListIndex} from '@tokenlist-builder/core';
 import fs from 'node:fs';
 
 // user -> cli -> aggregate -> network_type -> index.json
 // user -> cli -> aggregate -> network_type -> chain_name -> index.json
-export default function addAggregate(entry: Entry) {
-  const defaultChains = allChainNames();
-  const defaultNetworkTypes = allNetworkTypes();
-
+export default function addAggregate(entry: Entry, config: Config) {
   entry.command("aggregate", "It aggregates a directory of token lists into <directory>/index.json", (args) => {
-    return args.option("network_types", {
-      alias: "nt",
-      description: "List of network types to index",
-      type: "array",
-      default: defaultNetworkTypes,
-    }).option("index_file_name", {
-      alias: "in",
-      description: "The name of the index file created for specified network_type / chain_name",
-      default: "index",
-    }).option("chains", {
-      alias: "c",
-      description: "List of chains to index",
-      type: "array",
-      default: defaultChains,
-    });
-
-  }, (argv) => {
-
-    const {network_types: networkTypes, chains, output, index_file_name: indexFileName} = argv;
-
+  }, () => {
     // Enforce string[] for networkTypes
-    networkTypes.forEach((networkType) => {
+    config.allowedNetworkTypes.forEach((networkType) => {
       if (typeof networkType !== 'string') {
         throw new Error("Network type '" + networkType + "' must be a string");
       }
@@ -50,7 +25,7 @@ export default function addAggregate(entry: Entry) {
     const {repo, username} = parseGitRemoteUrl(stderr);
 
     // Enforce string[] for chains
-    chains.forEach((chain) => {
+    config.allowedChains.forEach((chain) => {
       if (typeof chain !== 'string') {
         throw new Error("Chain name '" + chain + "' must be a string");
       }
@@ -58,15 +33,15 @@ export default function addAggregate(entry: Entry) {
 
     const indexes: ListIndex[] = [];
     // Build the existent directories based on provided input and then load each index
-    forEachIndex(networkTypes as string[], chains as string[], output, indexFileName, (dirPath, indexPath) => {
-      const [loaded] = load(dirPath);
-      const listIndex = buildIndex(path.join(GITHUB_CONTENT_BASE_URL, username, repo), path.join(output, indexPath), loaded);
+    forEachIndex(config.allowedNetworkTypes, config.allowedChains, config.outputDir, config.indexFileName, (dirPath, indexPath) => {
+      const [loaded] = load(dirPath, config.chainsMapping);
+      const listIndex = buildIndex(path.join(config.contentBaseURL, username, repo), path.join(config.outputDir, indexPath), loaded);
       indexes.push(listIndex);
     });
 
-    const chainTypeIndexes = mergeIndexes(indexes, path.join(GITHUB_CONTENT_BASE_URL, username, repo, output));
+    const chainTypeIndexes = mergeIndexes(indexes, path.join(config.contentBaseURL, username, repo, config.outputDir));
     for (let [networkType, listIndex] of chainTypeIndexes.entries()) {
-      fs.writeFileSync(path.join(output, networkType, 'index.json'), JSON.stringify(listIndex, null, 2), 'utf8');
+      fs.writeFileSync(path.join(config.outputDir, networkType, 'index.json'), JSON.stringify(listIndex, null, 2), 'utf8');
     }
   });
 }

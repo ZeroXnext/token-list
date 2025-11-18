@@ -32,4 +32,15 @@ export const DEFAULT_LIST_VERSION = {
   minor: 0,
 };
 
+export const GITHUB_CONTENT_BASE_URL = "https://raw.githubusercontent.com";
+
 export const DEFAULT_TOKEN_LIST_NAME = "Token list";
+
+export const DEFAULT_OUTPUT_DIR = "dist/src";
+
+export const SYNC_SOURCES = [
+  "https://raw.githubusercontent.com/jab416171/uniswap-pairtokens/master/uniswap_pair_tokens.json",
+  "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokenlist.aave.eth.link",
+  "https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokens.1inch.eth.link",
+  "https://defiprime.com/defiprime.tokenlist.json",
+];
