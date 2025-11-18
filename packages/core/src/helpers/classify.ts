@@ -4,9 +4,18 @@ import createList from './create-list';
 import {slugify} from '@utils';
 
 const mapping = new Map<ListPath, TokenList>([]);
-
-export default function classify(tokenList: TokenList, seen: Set<string>, config: Config, offset = -1): Map<ListPath, TokenList> {
-  const {allowedNetworkTypes, outputDir, defaultListVersion, defaultTokenListName, chainsMapping} = config;
+const seen = new Set<string>();
+export default function classify(tokenList: TokenList, config: Config, offset = -1): Map<ListPath, TokenList> {
+  const {
+    allowedNetworkTypes,
+    allowedChains,
+    disallowedChains,
+    disallowedNetworkTypes,
+    outputDir,
+    defaultListVersion,
+    defaultTokenListName,
+    chainsMapping
+  } = config;
   for (let i = Math.max(offset, 0); i < tokenList.tokens.length; i++) {
 
     const token = tokenList.tokens[i];
@@ -33,7 +42,12 @@ export default function classify(tokenList: TokenList, seen: Set<string>, config
     }
 
     // 3. Check if network or chains are supported
-    if (!allowedNetworkTypes.includes(chainInfo.type)) {
+    if (
+        !allowedNetworkTypes.includes(chainInfo.type) ||
+        !allowedChains.includes(chainInfo.name) ||
+        disallowedChains.includes(chainInfo.name) ||
+        disallowedNetworkTypes.includes(chainInfo.type
+        )) {
       continue;
     }
 
@@ -71,10 +85,8 @@ export default function classify(tokenList: TokenList, seen: Set<string>, config
 
     // 8. Check if the list has reached the maximum tokens, if so write another list
     if (list?.tokens.length === maxTokensPerList) {
-      console.info("Making a new list from: ", tokenList.name, ` ${i}`);
-      return classify(tokenList, seen, config, i);
+      return classify(tokenList, config, i);
     }
-
     // 9. Update token list
     list?.tokens.push(token);
   }
