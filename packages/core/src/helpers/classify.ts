@@ -1,12 +1,12 @@
 import {schema as tokenListSchema, TokenList} from '@uniswap/token-lists';
-import {Chain, ListPath, Mutable, SeenKey} from '@types';
+import {Chain, Config, ListPath, Mutable} from '@types';
 import createList from './create-list';
-import {DEFAULT_CHAINS, DEFAULT_TOKEN_LIST_NAME} from '@constants';
 import {slugify} from '@utils';
 
 const mapping = new Map<ListPath, TokenList>([]);
 
-export default function classify(tokenList: TokenList, supportedNetworks: string[], rootDir: string, seen: Set<SeenKey>, defaultVersion = tokenList.version, defaultTokenListName = DEFAULT_TOKEN_LIST_NAME, chainsMapping = DEFAULT_CHAINS, offset = -1): Map<ListPath, TokenList> {
+export default function classify(tokenList: TokenList, seen: Set<string>, config: Config, offset = -1): Map<ListPath, TokenList> {
+  const {allowedNetworkTypes, outputDir, defaultListVersion, defaultTokenListName, chainsMapping} = config;
   for (let i = Math.max(offset, 0); i < tokenList.tokens.length; i++) {
 
     const token = tokenList.tokens[i];
@@ -33,7 +33,7 @@ export default function classify(tokenList: TokenList, supportedNetworks: string
     }
 
     // 3. Check if network or chains are supported
-    if (!supportedNetworks.includes(chainInfo.type)) {
+    if (!allowedNetworkTypes.includes(chainInfo.type)) {
       continue;
     }
 
@@ -47,12 +47,12 @@ export default function classify(tokenList: TokenList, supportedNetworks: string
     }
 
     // 6. Initialize listPath
-    let listPath: ListPath = `${rootDir}/${chainInfo.type}/${chainInfo.name}/${slugify(tokenListName)}.json`;
+    let listPath: ListPath = `${outputDir}/${chainInfo.type}/${chainInfo.name}/${slugify(tokenListName)}.json`;
 
     const maxTokensPerList = tokenListSchema.properties.tokens.maxItems;
     if (offset > -1) {
       const off = Math.floor(offset / maxTokensPerList); // try the next list
-      listPath = `${rootDir}/${chainInfo.type}/${chainInfo.name}/${slugify(tokenListName)}-${off}.json`;
+      listPath = `${outputDir}/${chainInfo.type}/${chainInfo.name}/${slugify(tokenListName)}-${off}.json`;
     }
 
     let list: Mutable<TokenList> | undefined = mapping.get(listPath);
@@ -65,14 +65,14 @@ export default function classify(tokenList: TokenList, supportedNetworks: string
         tokens: [],
         keywords: tokenList.keywords,
         logoURI: tokenList.logoURI
-      }, defaultVersion));
+      }, defaultListVersion));
       list = mapping.get(listPath);
     }
 
     // 8. Check if the list has reached the maximum tokens, if so write another list
     if (list?.tokens.length === maxTokensPerList) {
       console.info("Making a new list from: ", tokenList.name, ` ${i}`);
-      return classify(tokenList, supportedNetworks, rootDir, seen, defaultVersion, defaultTokenListName, chainsMapping, i);
+      return classify(tokenList, seen, config, i);
     }
 
     // 9. Update token list

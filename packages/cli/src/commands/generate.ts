@@ -6,15 +6,15 @@ import validate from '@helpers/validate';
 
 function addGenerateCommand(entry: Entry, config: Config) {
   entry
-      .command("generate", "Generate token list", undefined, async (args) => {
+      .command("generate", "Generate token list", undefined, async () => {
 
         const lists = await fetchExternal(config.syncSources);
-        let seen = new Set<SeenKey>();
+        const seen = new Set<SeenKey>();
         for (const list of lists) {
           if (!list) {
             continue;
           }
-          const classified = classify(list, config.allowedNetworkTypes, config.outputDir, seen, config.defaultListVersion, config.defaultTokenListName);
+          const classified = classify(list, seen, config);
           for (const [filepath, list] of classified.entries()) {
             const [valid, errors] = validate(list);
             if (valid) {
