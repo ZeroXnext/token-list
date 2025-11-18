@@ -8,13 +8,12 @@ import path from 'node:path';
 
 function addBumpCommand(entry: Entry, config: Config): void {
   entry.command("bump", "It auto-updates the version of the token list, according to rules", () => {
-  }, async (argv) => {
-    const {output: outputDir} = argv;
+  }, async () => {
     const stderr = childProcess.execSync("git remote get-url origin", {encoding: 'utf8'});
     const repo = parseGitRemoteUrl(stderr);
     const baseUrl = new URL(config.contentBaseURL);
     baseUrl.pathname = path.join(repo.username, repo.repo);
-    const [localLists] = load(outputDir, config.chainsMapping);
+    const [localLists] = load(config);
     for (const [key, localList] of localLists.entries()) {
       try {
         const res = await fetch(path.join(baseUrl.toString(), key));
