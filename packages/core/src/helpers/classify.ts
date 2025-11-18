@@ -50,7 +50,7 @@ export default function classify(tokenList: TokenList, config: Config, offset = 
         disallowedChains.includes(chainInfo.name) ||
         disallowedNetworkTypes.includes(chainInfo.type) ||
         !allowedTokens.includes(token.address as `0x${string}` ||
-            disallowedChains.includes(token.address as `0x${string}`)
+            disallowedTokens.includes(token.address as `0x${string}`)
         )
 
     ) {
