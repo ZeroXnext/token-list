@@ -33,11 +33,11 @@ export default function addAggregate(entry: Entry, config: Config) {
 
     const indexes: ListIndex[] = [];
     // Build the existent directories based on provided input and then load each index
-    forEachIndex(config.allowedNetworkTypes, config.allowedChains, config.outputDir, config.indexFileName, (dirPath, indexPath) => {
+    forEachIndex((dirPath, indexPath) => {
       const [loaded] = load(dirPath, config.chainsMapping);
       const listIndex = buildIndex(path.join(config.contentBaseURL, username, repo), path.join(config.outputDir, indexPath), loaded);
       indexes.push(listIndex);
-    });
+    }, config);
 
     const chainTypeIndexes = mergeIndexes(indexes, path.join(config.contentBaseURL, username, repo, config.outputDir));
     for (let [networkType, listIndex] of chainTypeIndexes.entries()) {

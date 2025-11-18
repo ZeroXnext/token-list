@@ -1,12 +1,14 @@
 import path from 'node:path';
 import fs from 'node:fs';
+import {Config} from '@tokenlist-builder/core';
 
-export default function forEachIndex(networkTypes: string[], chains: string[], baseDir: string, indexFileName: string, cb: (dirPath: string, indexPath: string) => void) {
-  for (const networkType of networkTypes) {
-    for (const chainName of chains) {
+export default function forEachIndex(cb: (dirPath: string, indexPath: string) => void, config: Config) {
+  const {allowedNetworkTypes, allowedChains, indexFileName, outputDir} = config;
+  for (const networkType of allowedNetworkTypes) {
+    for (const chainName of allowedChains) {
       const directoryPath = path.join(networkType.toString(), chainName.toString());
       const indexPath = path.join(directoryPath, `${indexFileName}.json`);
-      const fullPath = path.join(baseDir, directoryPath);
+      const fullPath = path.join(outputDir, directoryPath);
       if (!fs.existsSync(fullPath)) {
         continue;
       }
