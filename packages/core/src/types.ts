@@ -1,5 +1,7 @@
 import {TokenList, Version} from '@uniswap/token-lists';
 
+export type Key = string | Buffer
+
 export interface TokenListIndex {
   timestamp: string;
   version: TokenList['version'],
