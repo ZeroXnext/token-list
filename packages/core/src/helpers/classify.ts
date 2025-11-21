@@ -1,7 +1,8 @@
-import { schema as tokenListSchema, TokenList } from '@uniswap/token-lists';
-import { Chain, Config, ListPath, Mutable } from '@types';
-import createList from './create-list';
+import { schema as tokenListSchema } from '@uniswap/token-lists';
+import { Chain, Config, ListPath } from '@config';
+import { Mutable, TokenList } from '@types';
 import { slugify } from '@utils';
+import createList from './create-list';
 
 const mapping = new Map<ListPath, TokenList>([]);
 const seen = new Set<string>();

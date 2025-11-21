@@ -17,6 +17,7 @@
       "@utils": ["utils/index.ts"],
       "@types": ["types.ts"],
       "@constants": ["constants.ts"],
+      "@config": ["config/index.ts"],
       "@helpers": ["helpers/index.ts"]
     }
   },

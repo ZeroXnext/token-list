@@ -1,4 +1,4 @@
-import { Chain } from '@types';
+import { Chain } from '@config';
 
 export const DEFAULT_LIST_LOGO_URI = '';
 

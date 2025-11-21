@@ -1,4 +1,4 @@
-import { Config } from '@types';
+import { Config } from './types';
 import { supportedChains } from '@helpers';
 import {
   DEFAULT_CHAINS,
