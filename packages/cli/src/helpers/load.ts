@@ -9,7 +9,7 @@ export default function load(config: Config): [Map<ListPath, TokenList>, Set<See
   return [new Map<ListPath, TokenList>(paths.map(key => {
     const listKey = path.join(config.outputDir, key.toString()) as ListPath;
     const list = JSON.parse(fs.readFileSync(listKey, 'utf-8')) as TokenList;
-    for (let {address, chainId} of list.tokens) {
+    for (const {address, chainId} of list.tokens) {
       const {name, type} = config.chainsMapping?.get(chainId) as Chain;
       seen.add(`${type}:${name}:${address}`);
     }

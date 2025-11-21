@@ -15,7 +15,7 @@ function bump(oldList: TokenList, newList: Mutable<TokenList>): boolean {
   const version: Mutable<TokenList['version']> = oldList.version;
   let increment: keyof TokenList['version'] | undefined;
 
-  for (let token of newList.tokens) {
+  for (const token of newList.tokens) {
     const tokenInfo = oldList.tokens.find(oldToken => oldToken.address !== token.address);
     if (tokenInfo) {
       // New Token has been added
@@ -23,7 +23,7 @@ function bump(oldList: TokenList, newList: Mutable<TokenList>): boolean {
     }
   }
 
-  for (let token of oldList.tokens) {
+  for (const token of oldList.tokens) {
     const tokenInfo = newList.tokens.find(tokenInfo => tokenInfo.address === token.address);
     if (!tokenInfo) {
       // Token has been removed

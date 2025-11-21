@@ -25,8 +25,9 @@ function addBumpCommand(entry: Entry, config: Config): void {
 
         const remoteList = await res.json() as TokenList;
 
-        const changed = bump(remoteList, localList);
-        changed && output(key, localList);
+        if (bump(remoteList, localList)) {
+          output(key, localList);
+        }
       } catch (err) {
         console.error(err);
       }

@@ -9,7 +9,7 @@ export default function fetchExternal(sources: string[]) {
         return null;
       }
       return await res.json() as TokenList;
-    } catch (error) {
+    } catch {
       console.warn("Failed to load source: ", source);
       return null;
     }

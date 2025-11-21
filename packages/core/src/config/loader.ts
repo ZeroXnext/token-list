@@ -11,7 +11,7 @@ async function loader(cfg: string | Config): Promise<Config> {
     try {
       config = { ...defaultConfig, ...(await import(cfg ?? "0xlist.config") ?? {}).default as Config };
 
-    } catch (error) {
+    } catch {
       config = defaultConfig;
     }
   } else {

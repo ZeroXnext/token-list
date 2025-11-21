@@ -45,6 +45,7 @@ export interface ListIndex {
   lists: Array<Omit<TokenList, 'tokens'> & Record<"contents", ListURL>>;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ChainValue = NonNullable<Config['chainsMapping']> extends Map<any, infer V> ? V : never; // Chain
 
 export interface Plugin {

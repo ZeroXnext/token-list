@@ -1,6 +1,7 @@
 import {bump} from "@helpers";
 import {TokenList} from '@types';
 import {timestamp} from "@utils";
+import {TokenInfo} from '@uniswap/token-lists';
 
 // mock timestamp()
 jest.mock("../utils", () => ({
@@ -9,7 +10,7 @@ jest.mock("../utils", () => ({
 }));
 
 
-function makeList(tokens: any[], version = {major: 1, minor: 0, patch: 0}) {
+function makeList(tokens: TokenInfo[], version = {major: 1, minor: 0, patch: 0}) {
   return {
     name: "Test",
     timestamp: "2023-01-01T00:00:00Z",
