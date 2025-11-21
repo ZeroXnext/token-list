@@ -1,0 +1,15 @@
+flowchart TB
+    user[User]
+    gh_app["Github app"]
+    cli[CLI]
+    web[Web]
+    core[Core]
+    plugins[Plugins]
+    gh_app --> cli
+
+    user --> cli
+    user --> web
+
+    cli --> core
+    web --> gh_app
+    core --> plugins
