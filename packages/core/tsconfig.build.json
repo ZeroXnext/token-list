@@ -2,33 +2,34 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "target": "ES2023",
-    "rootDir": "src",
-    "outDir": "dist",
-    "declaration": true,
-    "declarationDir": "dist",
-    "baseUrl": ".",
-    "composite": false,
+    "module": "ES2022",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "moduleResolution": "node",
+    "noEmit": false,
+    "declarationDir": "dist",
+    "emitDeclarationOnly": true,
+    "baseUrl": "./src",
+    "rootDir": "./src",
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
     "paths": {
       "@utils": [
-        "src/utils.ts"
+        "utils/index.ts"
       ],
       "@types": [
-        "src/types.ts"
+        "types.ts"
       ],
       "@constants": [
-        "src/constants.ts"
+        "constants.ts"
       ],
       "@helpers": [
-        "src/helpers/index.ts"
+        "helpers/index.ts"
       ]
     }
   },
-  "exclude": [
-    "src/**/*.test.ts"
-  ],
   "include": [
-    "src/**/*"
+    "./schemas/*.json",
+    "./src/**/*"
   ]
 }

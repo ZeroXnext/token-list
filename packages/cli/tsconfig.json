@@ -2,12 +2,11 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
-    "module": "ES2022",
-    "target": "ES2023",
-    "declarationDir": "dist",
     "composite": true,
-    "baseUrl": ".",
-    "moduleResolution": "node",
+    "module": "NodeNext",
+    "target": "ES2023",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "paths": {
       "@utils": ["src/utils.ts"],
       "@types": ["src/types.ts"],

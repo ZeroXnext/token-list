@@ -5,13 +5,22 @@ const tsJestTransformCfg = createDefaultPreset().transform;
 
 export default {
   testEnvironment: "node",
-  testMatch: ["<rootDir>/**/*.test.ts"],
+  rootDir: ".",
+  testMatch: ["/**/*.test.ts"],
+  moduleNameMapper: {
+    "^@helpers/(.*)$": "<rootDir>/src/helpers/$1",
+    "^@helpers$": "<rootDir>/src/helpers/index.ts",
+    "^@utils/(.*)$": "<rootDir>/src/utils/$1",
+    "^@utils$": "<rootDir>/src/utils/index.ts",
+    "^@constants$": "<rootDir>/src/constants.ts",
+    "^@config$": "<rootDir>/src/config/index.ts",
+  },
   transform: {
     ...tsJestTransformCfg,
     '^.+\\.tsx?$': [
       'ts-jest',
       {
-        tsconfig: 'tsconfig.jest.json',
+        tsconfig: './tsconfig.jest.json',
       },
     ],
   },

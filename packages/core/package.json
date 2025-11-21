@@ -1,16 +1,19 @@
 {
   "name": "@tokenlist-builder/core",
   "private": true,
-  "main": "dist/index.js",
   "type": "module",
+  "main": "dist/index.esm.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
   "exports": {
-    "import": "./dist/core.esm.js",
-    "require": "./dist/core.cjs.js",
-    "types": "./dist/types.d.ts"
+    ".": {
+      "import": "./dist/index.esm.js",
+      "types": "./dist/index.d.ts"
+    }
   },
   "scripts": {
     "test": "jest",
-    "build": "rollup -c && tsc"
+    "build": "tsc -p tsconfig.build.json && rollup -c"
   },
   "dependencies": {
     "@uniswap/token-lists": "1.0.0-beta.32",
@@ -18,11 +21,13 @@
     "ajv-formats": "^3.0.1"
   },
   "devDependencies": {
+    "@rollup/plugin-alias": "^6.0.0",
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
-    "@rollup/plugin-typescript": "^12.3.0",
     "rollup": "^4.53.2",
+    "rollup-plugin-dts": "^6.2.3",
+    "rollup-plugin-esbuild": "^6.2.1",
     "tslib": "^2.8.1",
     "typescript": "^5.9.3"
   }

@@ -1,7 +1,8 @@
 {
   "files": [],
   "references": [
-    { "path": "./tsconfig.build.json"},          // your actual build config
-    { "path": "./tsconfig.jest.json" }      // jest-only config
+    {
+      "path": "./tsconfig.build.json"
+    },
   ]
 }
