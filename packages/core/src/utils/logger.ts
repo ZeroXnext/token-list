@@ -33,12 +33,14 @@ export class Logger {
         }
     }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private formatMessage(level: LogLevel, message: any[]) {
         const timestamp = new Date().toISOString();
         const formatted = message.map(m => (typeof m === 'string' ? m : util.inspect(m, { depth: null }))).join(' ');
         return `[${timestamp}] [${level.toUpperCase()}] ${formatted}`;
     }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private write(level: LogLevel, message: any[]) {
         if (LEVEL_ORDER[level] < LEVEL_ORDER[this.level]) return;
 
@@ -65,18 +67,25 @@ export class Logger {
             fs.appendFileSync(this.logFilePath, formatted + '\n');
         }
     }
-
-    debug(...msg: any[]) { this.write('debug', msg); }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  debug(...msg: any[]) { this.write('debug', msg); }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
     info(...msg: any[]) { this.write('info', msg); }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
     warn(...msg: any[]) { this.write('warn', msg); }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
     error(...msg: any[]) { this.write('error', msg); }
 
     // Scoped logger for modules
     scope(name: string) {
         return {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
             debug: (...msg: any[]) => this.debug(`[${name}]`, ...msg),
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
             info: (...msg: any[]) => this.info(`[${name}]`, ...msg),
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
             warn: (...msg: any[]) => this.warn(`[${name}]`, ...msg),
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
             error: (...msg: any[]) => this.error(`[${name}]`, ...msg),
         };
     }
