@@ -1,6 +1,7 @@
-import bump from "./bump";
-import {TokenList} from '../types';
-import {timestamp} from "../utils";
+import {bump} from "@helpers";
+import {TokenList} from '@types';
+import {timestamp} from "@utils";
+
 // mock timestamp()
 jest.mock("../utils", () => ({
   __esModule: true,
