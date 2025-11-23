@@ -1,17 +1,14 @@
 flowchart >
     input["Input (Config)"]
-    setup[Setup]
+    setup[State]
 
     runtime[Runtime]
-
-    loadExternal[External]
-    loadOwned[Owned]
 
     lifecycle["Lifecycle"]
 
 
     lifecycle0["Setup"]
-    lifecycle1["load"]
+    lifecycle1["load state"]
     lifecycle2["Transformer"]
     lifecycle3["Output"]
 
@@ -19,8 +16,7 @@ flowchart >
     manifest[Manifest]
 
     input --> setup --> runtime --> lifecycle --> lifecycle0
-    lifecycle --> lifecycle1 --> loadOwned
-    lifecycle1 --> loadExternal
+    lifecycle --> lifecycle1
     lifecycle --> lifecycle2
     lifecycle --> lifecycle3
     runtime --> version
