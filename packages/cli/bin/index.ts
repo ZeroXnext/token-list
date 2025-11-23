@@ -3,9 +3,9 @@ import { entry } from '../src';
 import addBumpCommand from '../src/commands/bump';
 import addAggregate from '../src/commands/aggregate';
 import addSync from '../src/commands/sync';
-import { loader } from '@tokenlist-builder/core';
+import { loader } from '@0xlist/core';
 
-const config = await loader();
+const config = await loader('0xlist');
 
 addSync(entry, config);
 addAggregate(entry, config);
