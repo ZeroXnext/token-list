@@ -130,6 +130,11 @@ class StateManager {
 
 ## 2.6 Global types: Hash, MerkleRoot
 
+```ts
+type Hash = Uint8Array | Buffer;
+type MerkleRoot = Uint8Array;
+```
+
 <!--
 ## 2.4. Cryptography lib interface
 
