@@ -11,7 +11,7 @@ export default defineConfig([
     'packages/**/dist',
     'packages/**/.rollup.cache',
     '*.build.tsbuildinfo',
-    'specification'
+    'specification',
   ]),
   {
     files: ['packages/**/**/*.{js,mjs,cjs,ts,mts,cts}'],
