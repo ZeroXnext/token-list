@@ -71,4 +71,3 @@ export interface PermissionTree {
 export interface RevocationTree {
   [key: string]: true;
 }
-
