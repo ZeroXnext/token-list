@@ -108,40 +108,61 @@ interface StateConfig {
 
 ```ts
 type StateRoots = {
-  listRoot: MerkleRoot;
-  runnersRoot: MerkleRoot;
-  pluginPermissionRoot: MerkleRoot;
+  runtime: MerkleRoot;
+  runner: MerkleRoot;
+  pluginPermission: MerkleRoot;
+};
+
+type StateSignatures = {
+  runtime: Signature;
+  runner: Signature;
+  pluginPermission: Signature;
 };
 
 type StateNodes = {
-  list: Map<Hash, ListNode>;
-  runners: Map<Hash, RunnerNode>;
-  pluginPermissions: Map<Hash, PluginPermissionsNode>;
+  runtime: Map<Hash, ListNode>;
+  runner: Map<Hash, RunnerNode>;
+  pluginPermission: Map<Hash, PluginPermissionsNode>;
 };
 
 class StateManager {
   roots: StateRoots;
   nodes: StateNodes;
+  signatures: StateSignatures;
+
+  constructor(owner: PublicKey) {}
 
   async sync(): void;
   verify(hash: Hash): boolean;
 }
 ```
 
-## 2.6 Global types: Hash, MerkleRoot
+## 2.6 Global types: Hash, MerkleRoot, PublicKey, Signature, Cryptography interface
 
 ```ts
 type Hash = Uint8Array | Buffer;
+
 type MerkleRoot = Uint8Array;
+
+type PublicKey = Uint8Array | Buffer;
+
+type Signature = Uint8Array | Buffer;
+
+interface Cryptography {
+  hash(input: Uint8Array | string): Hash;
+  sign(message: Uint8Array): Signature;
+  verify(message: Uint8Array, signature: Signature): boolean;
+}
 ```
 
-<!--
-## 2.4. Cryptography lib interface
+## 2.7 Verification Layer
+
+The verification layer represents a layer of TrustedRunners, Trusted
+
+## 2.8 Base Node
 
 ```ts
-interface Cryptography {
-	hash(input: Uint8Array | string): Uint8Array
-	sign(message: Uint8Array): Signature
-	verify(message: Uint8Array, signature: Signature): boolean
+interface BaseNode {
+  toLeaf(): Hash;
 }
-``` -->
+```
