@@ -11,6 +11,8 @@ export default {
   moduleNameMapper: {
     '^@utils/(.*)$': '<rootDir>/src/utils/$1',
     '^@utils$': '<rootDir>/src/utils/index.ts',
+    '^@types/(.*)$': '<rootDir>/src/types/$1',
+    '^@types$': '<rootDir>/src/types/index.ts',
   },
   transform: {
     ...tsJestTransformCfg,

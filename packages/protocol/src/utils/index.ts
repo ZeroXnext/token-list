@@ -1,3 +1,1 @@
-const utils = {};
-
-export default utils;
+export * from './identity-serializer';
