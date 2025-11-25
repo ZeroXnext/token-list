@@ -1,9 +1,9 @@
 import * as ethers from 'ethers';
 
 import { Wallet } from 'ethers';
-import { ICryptography } from '@types';
+import { IWallet } from '@types';
 
-export class EthersCrypto implements ICryptography {
+export class EthersWallet implements IWallet {
   /** Hash data using SHA-256 */
   hash(data: Uint8Array) {
     return ethers.toBeArray(ethers.keccak256(data));

@@ -1,4 +1,4 @@
-import { EthersCrypto } from '../helpers';
+import { EthersWallet } from '../helpers';
 import IdentitySerializer from './identity-serializer';
 import { IDENTITY_TYPE } from './types';
 
@@ -32,7 +32,7 @@ jest.mock('ethers', () => {
 
 describe('Identity Serializer', () => {
   it('Should work', () => {
-    const cryptography = new EthersCrypto();
+    const cryptography = new EthersWallet();
     const [publicK] = cryptography.generateKeyPair();
     const identity = new IdentitySerializer(cryptography);
     const input = {
