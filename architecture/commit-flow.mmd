@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant User
+    participant Router
+    participant Committer
+    participant Committee
+    participant Blockchain
+
+    User ->> Router: Intends to produce a commit
+    Router ->> Committee: Requests a ticket for this intent
+    Committee ->> Router: Returns ticket
+    Router ->> Committer: Routes intent and data
+    Committer ->> Router: Produces commit (stateless, no root knowledge)
+    Router ->> Committee: Sends commit + ticket, requests next state
+    Committee ->> Router: Responds with new state (Merkle root) and costs
+    Router ->> User: Requests signature on costs and new state
+    User ->> Router: Signs and proceeds to commit to Blockchain
+    Router ->> Blockchain: Submits receipt / signed state
+    Blockchain ->> Committee: Notifies new blockchain root
+    Committee ->> Router: Confirms root update and queue processing 
