@@ -1,15 +1,11 @@
-flowchart TB
-    user[User]
-    gh_app["Github app"]
-    cli[CLI]
-    web[Web]
-    core[Core]
-    plugins[Plugins]
-    gh_app --> cli
+flowchart TD
+    user["User (Signer)"]
+    node0["Client node (Committer)"]
+    node1["Storage node (Committee)"]
+    host["Client host (router)"]
+    blockchain["Blockchain"]
 
-    user --> cli
-    user --> web
-
-    cli --> core
-    web --> gh_app
-    core --> plugins
+    user --> host --> node0
+             host --> node1
+             host --> blockchain
+             blockchain --> node1
