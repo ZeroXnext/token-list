@@ -1,0 +1,57 @@
+classDiagram
+    L2Contract .. IdentityNodeAdapter
+    L2Contract .. PluginStore
+    L2Contract .. AuditorRegistry
+    L2Contract .. DeveloperRegistry
+    L2Contract .. ListCompilerNode
+
+    SDK ..> MerkleTree
+    
+    IdentityNodeAdapter ..> IdentityImpl
+    
+    class MerkleTree {
+      
+    }
+
+    class SDK {
+
+    }
+
+    class L2Contract {
+      trustedStores: MerkleRoot
+      trustedPluginStores: MerkleRoot
+      trustedAuditors: MerkleRoot
+      trustedDevelopers: MerkleRoot
+      trustedGuardians: MerkleRoot
+    }
+
+    class IdentityNodeAdapter~IdentityImpl~ {
+      rootTree
+      verify: verify()
+      issue: issue()
+    }
+
+    IdentityImpl: verify()
+    IdentityImpl: issue()
+
+    class PluginStoreRegistry {
+      
+    }
+
+    class AuditorRegistry {
+      
+    }
+
+
+    class GuardianRegistry {
+      
+    }
+
+
+    class DeveloperRegistry {
+
+    }
+
+    class ListCompilerNode {
+
+    }
