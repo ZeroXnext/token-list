@@ -10,10 +10,16 @@
 
 ## Architecture
 
-| Storage | Details                                                                                   |
-| ------- | ----------------------------------------------------------------------------------------- |
-| L1      | On L1 we store the mapping of roots and signatures of auditors, developers, and guardians |
-| L2      | We store proof leafs of trustedAuditors, developers                                       |
+| Storage | Details                                                                                         |
+| ------- | ----------------------------------------------------------------------------------------------- |
+| L1      | Storeage for mapping of hashed(roots of auditors, developers, guardians, signed by node runner) |
+| L2      | Storage for mapping of [guardian ID -> ownedSignature]                                          |
+| L2      | Storage for mapping of [auditor ID -> ownedSignature]                                           |
+| L2      | Storage for mapping of [developer ID -> ownedSignature]                                         |
+| L2      | Storage for mapping of [plugin ID -> developerSignature]                                        |
+| L2      | Storage for auditorTrust mapping of [plugin ID -> auditorId -> auditorSignature]                |
+
+| L3 | Storage usef for mappings |
 
 ## Governance Rules
 
